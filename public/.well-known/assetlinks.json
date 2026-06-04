@@ -1,0 +1,16 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls",
+            "delegate_permission/common.get_login_creds"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.sabsjs.laravel_auth_flutter",
+            "sha256_cert_fingerprints": [
+                "95:AD:63:EB:8C:49:26:9F:40:75:D9:6B:DC:59:38:AD:0B:7A:61:6B:1C:EF:2C:3F:5C:1A:F1:18:C1:61:7C:4C",
+                "81:09:0F:79:5D:D1:AB:E6:D5:C3:AE:AB:9C:2B:C7:B8:97:6F:BA:28:D5:8D:64:48:FF:AF:BE:C2:94:7C:AA:CF"
+            ]
+        }
+    }
+]

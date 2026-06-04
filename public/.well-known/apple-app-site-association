@@ -1,0 +1,18 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "YOUR_TEAM_ID.com.sabsjs.laravel-auth-flutter",
+        "paths": [
+          "/event-spf/*"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "YOUR_TEAM_ID.com.sabsjs.laravel-auth-flutter"
+    ]
+  }
+}
