@@ -5,7 +5,9 @@
 
         <!-- 🪙 Donation - now wider (md:col-span-5) -->
         <div class="md:col-span-5">
-            <h4 class="text-sm font-bold text-slate-200 uppercase tracking-widest mb-5 border-b border-slate-800 pb-2.5 font-mono">🙏 Donation</h4>
+            <h4
+                class="text-sm font-bold text-slate-200 uppercase tracking-widest mb-5 border-b border-slate-800 pb-2.5 font-mono">
+                🙏 Donation</h4>
             <div class="flex items-start gap-4">
                 <div class="border border-slate-800 rounded-xl p-1.5 bg-white shadow-sm flex-shrink-0">
                     <img src="{{ asset('img/DONOR PORTAL QR.png') }}" alt="QR Code"
@@ -26,7 +28,9 @@
 
         <!-- 🧾 Latest Downloads - now smaller (md:col-span-2) -->
         <div class="md:col-span-2">
-            <h4 class="text-sm font-bold text-slate-200 uppercase tracking-widest mb-5 border-b border-slate-800 pb-2.5 font-mono">📥 Latest Downloads</h4>
+            <h4
+                class="text-sm font-bold text-slate-200 uppercase tracking-widest mb-5 border-b border-slate-800 pb-2.5 font-mono">
+                📥 Latest Downloads</h4>
             <div class="space-y-2.5">
                 <a href="/shramnopasak"
                     class="block bg-slate-900 hover:bg-indigo-600 text-white text-center py-2.5 rounded-xl text-xs font-bold border border-slate-800 hover:border-indigo-500 transition-all duration-300 shadow-sm">📄
@@ -44,18 +48,24 @@
 
         <!-- 🧭 Quick Links - now smaller (md:col-span-2) -->
         <div class="md:col-span-2">
-            <h4 class="text-sm font-bold text-slate-200 uppercase tracking-widest mb-5 border-b border-slate-800 pb-2.5 font-mono">🔗 Quick Links</h4>
+            <h4
+                class="text-sm font-bold text-slate-200 uppercase tracking-widest mb-5 border-b border-slate-800 pb-2.5 font-mono">
+                🔗 Quick Links</h4>
             <ul class="space-y-2.5 text-slate-400 text-sm">
                 <li><a href="/vihaarcharya" class="hover:text-indigo-400 transition-colors">📍 विहारचर्या</a></li>
-                <li><a href="https://spf.sadhumargi.com" class="hover:text-indigo-400 transition-colors">👔 Sadhumargi Professional Forum</a></li>
-                <li><a href="https://sadhumargi.in" class="hover:text-indigo-400 transition-colors">💳 Sadhumargi App </a></li>
+                <li><a href="https://sadhumargi.com/spf" class="hover:text-indigo-400 transition-colors">👔 Sadhumargi
+                        Professional Forum</a></li>
+                <li><a href="https://sadhumargi.in" class="hover:text-indigo-400 transition-colors">💳 Sadhumargi App
+                    </a></li>
                 <li><a href="/contactus" class="hover:text-indigo-400 transition-colors">📞 Contact Us</a></li>
             </ul>
         </div>
 
         <!-- 🏢 Office Info (unchanged) -->
         <div class="md:col-span-3">
-            <h4 class="text-sm font-bold text-slate-200 uppercase tracking-widest mb-5 border-b border-slate-800 pb-2.5 font-mono">🏢 Central Office</h4>
+            <h4
+                class="text-sm font-bold text-slate-200 uppercase tracking-widest mb-5 border-b border-slate-800 pb-2.5 font-mono">
+                🏢 Central Office</h4>
             <p class="text-sm text-slate-400 leading-relaxed">
                 श्री अखिल भारतवर्षीय साधुमार्गी जैन संघ<br />
                 संघ केन्द्रीय कार्यालय, समता भवन<br />
@@ -73,7 +83,8 @@
             <div class="flex items-center gap-2">
                 <span>Follow Us:</span>
                 <a href="#" target="_blank" class="opacity-60 hover:opacity-100 transition-opacity">
-                    <img src="{{ asset('img/social/facebook.png') }}" alt="Facebook" class="w-5 h-5 filter grayscale invert" />
+                    <img src="{{ asset('img/social/facebook.png') }}" alt="Facebook"
+                        class="w-5 h-5 filter grayscale invert" />
                 </a>
             </div>
         </div>
