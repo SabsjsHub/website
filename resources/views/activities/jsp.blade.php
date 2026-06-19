@@ -531,7 +531,7 @@
                 <!-- Class Dropdown -->
                 <select x-model="selectedClass" class="border py-2 px-3 rounded w-full max-w-xs mb-4">
                     <option value="" disabled selected>कृपया क्लास चुनें</option>
-                    <template x-for="c in Array.from({ length: 12 }, (_, i) => i + 1)" :key="c">
+                    <template x-for="c in Object.keys(papers).sort((a, b) => a.localeCompare(b, undefined, {numeric: true}))" :key="c">
                         <option :value="c">Class <span x-text="c"></span></option>
                     </template>
                 </select>
