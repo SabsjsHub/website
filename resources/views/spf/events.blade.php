@@ -5,37 +5,27 @@
 @section('content')
     <div class="max-w-7xl mx-auto px-4 py-4 md:py-8">
         <!-- Page Header -->
-        <div class="mb-4 md:mb-8">
-            <div class="flex items-center mb-4">
-                <div
-                    class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mr-4 shadow-lg">
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                        </path>
-                    </svg>
-                </div>
-                <div>
-                    <h1 class="text-4xl font-bold text-indigo-700">SPF Events</h1>
-                    <p class="text-gray-600 mt-1">Explore all upcoming and past events</p>
-                </div>
+        <div class="mb-6 border-b border-gray-200 pb-4 flex justify-between items-end">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900">SPF Events</h1>
+                <p class="text-sm text-gray-500 mt-1">Explore all upcoming and past events</p>
             </div>
         </div>
 
         <!-- Filter Section -->
-        <div class="mb-4 md:mb-8 bg-white rounded-xl shadow-md p-6">
-            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div class="mb-6 bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+            <div class="flex flex-col md:flex-row gap-4 items-end justify-between">
                 <div class="flex-1 w-full md:w-auto">
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Filter by Project</label>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Filter by Project</label>
                     <select id="project-filter"
-                        class="w-full px-4 py-3 border-2 border-indigo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                         <option value="all">All Projects</option>
                     </select>
                 </div>
                 <div class="flex-1 w-full md:w-auto">
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Sort by</label>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Sort by</label>
                     <select id="sort-filter"
-                        class="w-full px-4 py-3 border-2 border-indigo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                         <option value="date-desc">Latest First</option>
                         <option value="date-asc">Oldest First</option>
                         <option value="title-asc">Title (A-Z)</option>
@@ -43,9 +33,9 @@
                     </select>
                 </div>
                 <div class="flex-1 w-full md:w-auto">
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Search</label>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Search</label>
                     <input type="text" id="search-input" placeholder="Search events..."
-                        class="w-full px-4 py-3 border-2 border-indigo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
             </div>
         </div>
@@ -57,7 +47,7 @@
         </div>
 
         <!-- Events Grid -->
-        <div id="events-grid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="events-grid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             <!-- Events will be dynamically inserted here -->
         </div>
 
@@ -71,120 +61,7 @@
         </div>
     </div>
 
-    <!-- Event Details Modal -->
-    <div id="event-modal" class="fixed inset-0 z-50 hidden bg-black/60 flex items-center justify-center p-4"
-        onclick="closeEventModal()">
-        <div class="bg-white rounded-2xl max-w-4xl w-full p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto"
-            onclick="event.stopPropagation()">
-            <button onclick="closeEventModal()"
-                class="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-3xl leading-none transition-colors z-10">&times;</button>
 
-            <!-- Event Image -->
-            <div class="w-full h-80 flex items-center justify-center mb-6 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden cursor-pointer"
-                onclick="openImagePreview(document.getElementById('event-modal-image').src)">
-                <img id="event-modal-image" src="" alt="" class="max-h-full max-w-full object-contain" />
-            </div>
-
-            <!-- Event Title -->
-            <div class="flex flex-wrap items-center gap-3 mb-6">
-                <h2 id="event-modal-title" class="text-3xl font-bold text-indigo-700 flex-1 min-w-0"></h2>
-                <div id="event-modal-status-badge" class="flex-shrink-0"></div>
-            </div>
-
-            <!-- Event Details Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div class="flex items-start space-x-3 bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-lg">
-                    <svg class="w-6 h-6 text-purple-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                        </path>
-                    </svg>
-                    <div>
-                        <p class="text-xs text-gray-500 font-semibold uppercase">Event Date</p>
-                        <p id="event-modal-date" class="font-bold text-gray-800 text-lg"></p>
-                    </div>
-                </div>
-
-                <div class="flex items-start space-x-3 bg-gradient-to-br from-blue-50 to-purple-50 p-4 rounded-lg">
-                    <svg class="w-6 h-6 text-blue-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <div>
-                        <p class="text-xs text-gray-500 font-semibold uppercase">Time</p>
-                        <p id="event-modal-time" class="font-bold text-gray-800 text-lg"></p>
-                    </div>
-                </div>
-
-                <div class="flex items-start space-x-3 bg-gradient-to-br from-green-50 to-teal-50 p-4 rounded-lg">
-                    <svg class="w-6 h-6 text-green-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                        </path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
-                        </path>
-                    </svg>
-                    <div>
-                        <p class="text-xs text-gray-500 font-semibold uppercase">Location</p>
-                        <p id="event-modal-location" class="font-bold text-gray-800 text-lg"></p>
-                    </div>
-                </div>
-
-                <div class="flex items-start space-x-3 bg-gradient-to-br from-orange-50 to-yellow-50 p-4 rounded-lg">
-                    <svg class="w-6 h-6 text-orange-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
-                        </path>
-                    </svg>
-                    <div>
-                        <p class="text-xs text-gray-500 font-semibold uppercase">Project</p>
-                        <p id="event-modal-project" class="font-bold text-gray-800 text-lg"></p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Registration Dates -->
-            <div id="registration-section" class="hidden mb-6">
-                <div class="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 p-4 rounded-lg">
-                    <h3 class="text-lg font-bold text-green-700 mb-3 flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
-                            </path>
-                        </svg>
-                        Registration Period
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <p class="text-xs text-gray-600 font-semibold uppercase mb-1">Registration Starts</p>
-                            <p id="event-modal-reg-start" class="text-gray-800 font-bold"></p>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-600 font-semibold uppercase mb-1">Registration Ends</p>
-                            <p id="event-modal-reg-end" class="text-gray-800 font-bold"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Event Description -->
-            <div class="border-t pt-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                    <svg class="w-6 h-6 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7">
-                        </path>
-                    </svg>
-                    Description
-                </h3>
-                <p id="event-modal-desc" class="text-gray-700 leading-relaxed whitespace-pre-line"></p>
-            </div>
-        </div>
-    </div>
 
     <!-- Image Preview Modal -->
     <div id="image-preview-modal" class="fixed inset-0 z-[60] hidden bg-black/90 flex items-center justify-center p-4"
@@ -306,7 +183,7 @@
             const eventImage = "https://website.sadhumargi.in/storage/" + event.photo;
             const eventDate = new Date(event.date).toLocaleDateString('en-IN', {
                 year: 'numeric',
-                month: 'long',
+                month: 'short',
                 day: 'numeric'
             });
 
@@ -316,8 +193,8 @@
             const isCompleted = eventDateObj < currentDate;
 
             const statusBadge = isCompleted
-                ? '<div class="absolute top-3 left-3 bg-gradient-to-r from-gray-600 to-gray-800 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Completed</div>'
-                : '<div class="absolute top-3 left-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center"><svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Upcoming</div>';
+                ? '<div class="absolute top-2 left-2 bg-gray-800/90 text-white px-2 py-1 rounded text-[10px] font-semibold uppercase tracking-wider">Completed</div>'
+                : '<div class="absolute top-2 left-2 bg-emerald-600/90 text-white px-2 py-1 rounded text-[10px] font-semibold uppercase tracking-wider">Upcoming</div>';
 
             // Format registration dates if available
             let regDatesHtml = '';
@@ -325,7 +202,6 @@
                 const regStart = new Date(event.event_reg_start).toLocaleDateString('en-IN', {
                     month: 'short',
                     day: 'numeric',
-                    year: 'numeric'
                 });
                 const regEnd = new Date(event.event_reg_close).toLocaleDateString('en-IN', {
                     month: 'short',
@@ -333,133 +209,56 @@
                     year: 'numeric'
                 });
                 regDatesHtml = `
-                                                                                                    <div class="flex items-start text-sm text-gray-600">
-                                                                                                        <svg class="w-4 h-4 mr-2 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                                                                                                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
-                                                                                                        </svg>
-                                                                                                        <div>
-                                                                                                            <span class="font-semibold text-green-700">Registration:</span>
-                                                                                                            <span class="block">${regStart} - ${regEnd}</span>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                `;
+                    <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                        <span class="font-medium text-gray-700">Reg:</span>
+                        <span>${regStart} - ${regEnd}</span>
+                    </div>
+                `;
             }
 
             const card = document.createElement('div');
             card.className =
-                'bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-[1.02] transition-all duration-300 hover:shadow-2xl border-2 border-transparent hover:border-indigo-200 flex flex-col';
+                'bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200 flex flex-col group';
 
             card.innerHTML = `
-                                                                                    <div class="relative h-56 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden cursor-pointer flex items-center justify-center" 
-                                                                                         onclick="openImagePreview('${eventImage}')">
-                                                                                        <img src="${eventImage}" alt="${event.title}" 
-                                                                                             class="w-full h-full object-contain transition-transform duration-300 hover:scale-105" />
-                                                                                        ${statusBadge}
-                                                                                    </div>
+                <div class="relative h-40 bg-gray-100 overflow-hidden cursor-pointer flex items-center justify-center border-b border-gray-100" 
+                     onclick="openImagePreview('${eventImage}')">
+                    <img src="${eventImage}" alt="${event.title}" 
+                         class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" />
+                    ${statusBadge}
+                </div>
 
-                                                                                    <div class="p-6 flex flex-col flex-1">
-                                                                                        <h3 class="text-xl font-bold text-indigo-700 mb-4 line-clamp-2 min-h-[3.5rem]">${event.title}</h3>
+                <div class="p-4 flex flex-col flex-1">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[10px] font-semibold text-indigo-600 uppercase tracking-wider">${event.project.title}</span>
+                        <span class="bg-indigo-50 text-indigo-700 border border-indigo-100 text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">${eventDate}</span>
+                    </div>
+                    <h3 class="text-base font-bold text-gray-900 mb-2 line-clamp-2 leading-snug">${event.title}</h3>
 
-                                                                                        <div class="space-y-2.5 mb-4">
-                                                                                            <div class="flex items-center text-sm text-gray-600">
-                                                                                                <svg class="w-4 h-4 mr-2 text-purple-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                                                                                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                                                                                </svg>
-                                                                                                <span class="font-semibold">${eventDate}</span>
-                                                                                            </div>
+                    <div class="space-y-1.5 mb-2 mt-auto">
+                        <div class="flex items-center text-xs text-gray-600">
+                            <svg class="w-3.5 h-3.5 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>${event.time}</span>
+                        </div>
+                        <div class="flex items-center text-xs text-gray-600">
+                            <svg class="w-3.5 h-3.5 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                            <span class="line-clamp-1">${event.location}</span>
+                        </div>
+                    </div>
 
-                                                                                            <div class="flex items-center text-sm text-gray-600">
-                                                                                                <svg class="w-4 h-4 mr-2 text-purple-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                                                                                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                                                                                </svg>
-                                                                                                <span>${event.time}</span>
-                                                                                            </div>
+                    ${regDatesHtml}
 
-                                                                                            <div class="flex items-center text-sm text-gray-600">
-                                                                                                <svg class="w-4 h-4 mr-2 text-purple-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                                                                                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                                                                                </svg>
-                                                                                                <span class="line-clamp-1">${event.location}</span>
-                                                                                            </div>
-
-                                                                                            <div class="flex items-center text-sm text-gray-600">
-                                                                                                <svg class="w-4 h-4 mr-2 text-indigo-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                                                                                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                                                                                                </svg>
-                                                                                                <span class="font-semibold text-indigo-700">${event.project.title}</span>
-                                                                                            </div>
-
-                                                                                            ${regDatesHtml}
-                                                                                        </div>
-
-                                                                                        <a href="/event-spf/${event.id}" 
-                                                                                           class="mt-auto block w-full px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 text-center">
-                                                                                            View More
-                                                                                        </a>
-                                                                                    </div>
-                                                                                `;
+                    <a href="/event-spf/${event.id}" 
+                       class="mt-3 block w-full px-3 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-medium rounded hover:bg-gray-50 transition-colors text-center focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                        View Details
+                    </a>
+                </div>
+            `;
 
             return card;
         }
 
-        function openEventModal(event) {
-            const eventImage = "https://website.sadhumargi.in/storage/" + event.photo;
-            const eventDate = new Date(event.date).toLocaleDateString('en-IN', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
 
-            // Check if event is completed or upcoming
-            const currentDate = new Date();
-            const eventDateObj = new Date(event.date);
-            const isCompleted = eventDateObj < currentDate;
-
-            const statusBadgeHtml = isCompleted
-                ? '<div class="bg-gradient-to-r from-gray-600 to-gray-800 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center"><svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Completed</div>'
-                : '<div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center"><svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Upcoming</div>';
-
-            document.getElementById("event-modal-image").src = eventImage;
-            document.getElementById("event-modal-title").innerText = event.title;
-            document.getElementById("event-modal-status-badge").innerHTML = statusBadgeHtml;
-            document.getElementById("event-modal-date").innerText = eventDate;
-            document.getElementById("event-modal-time").innerText = event.time;
-            document.getElementById("event-modal-location").innerText = event.location;
-            document.getElementById("event-modal-project").innerText = event.project.title;
-            document.getElementById("event-modal-desc").innerText = event.description;
-
-            // Show/hide registration section
-            const registrationSection = document.getElementById("registration-section");
-            if (event.event_reg_start && event.event_reg_close) {
-                const regStart = new Date(event.event_reg_start).toLocaleDateString('en-IN', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-                const regEnd = new Date(event.event_reg_close).toLocaleDateString('en-IN', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-
-                document.getElementById("event-modal-reg-start").innerText = regStart;
-                document.getElementById("event-modal-reg-end").innerText = regEnd;
-                registrationSection.classList.remove("hidden");
-            } else {
-                registrationSection.classList.add("hidden");
-            }
-
-            document.getElementById("event-modal").classList.remove("hidden");
-        }
-
-        function closeEventModal() {
-            document.getElementById("event-modal").classList.add("hidden");
-        }
 
         function openImagePreview(imageSrc) {
             document.getElementById("preview-image").src = imageSrc;
